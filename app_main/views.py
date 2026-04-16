@@ -5,7 +5,7 @@ from .models import Task
 # Create your views here.
 def home(request):
     tasks = Task.objects.filter(is_completed=False)
-    completed_tasks = Task.objects.filter(is_completed=True)
+    completed_tasks = Task.objects.filter(is_completed=True).order_by('-updated_at')
     con = {
         'tasks':tasks,
         'completed_tasks':completed_tasks,
@@ -47,3 +47,8 @@ def edit_task(request, pk):
         }
     return render(request, 'edit_task.html', con)
 
+
+def delete_task(request, pk):
+    get_task = get_object_or_404(Task, pk=pk)
+    get_task.delete()
+    return redirect('home')
