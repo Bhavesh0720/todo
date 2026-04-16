@@ -47,7 +47,10 @@
                 <div class="card m-1">
                     <div class="card-body">
                         {{ cts.task }} 
-                    </div>
+                        <span style="position: relative; float: right;">
+                            <a href="{% url 'markAsUnDone' cts.pk %}"  class="btn btn-success"><i class="fa fa-check"></i> Mark as UnDone</a>
+                        </span>
+                    </div>                    
                 </div>
                 {% endfor %}
             </div>
